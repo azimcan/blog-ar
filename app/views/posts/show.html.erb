@@ -1,0 +1,13 @@
+<div class="w-full">
+  <div class="min-w-full">
+    <%= render @post %>
+    
+    <div class="shadow-2xl p-4 mb-8 rounded-lg bg-white">
+      <h2 class="text-center text-3xl">Comments</h2>
+
+      <%= turbo_frame_tag "comments", src: post_comments_path(@post) %>
+
+      <%= render 'comments/form', post: @post, comment: @post.comments.build %>
+    </div>
+  </div>
+</div>

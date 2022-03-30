@@ -1,0 +1,10 @@
+<% if notice.present? %>
+  <div data-controller="alert" class="fixed right-0 top-5 z-50 origin-center translate-x-full transition-transform">
+    <div class="grid grid-flow-col py-2 px-3 bg-blue-50 text-blue-500 rounded-l-lg">
+      <%= notice %>
+      <button type="button" class="hover:text-blue-600 pl-4" data-action="click->alert#close">
+        <%= heroicon('x') %>
+      </button>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<div id="<%= dom_id(comment) %>" class="bg-opacity-10 bg-gray-900 rounded-2xl px-5">
+  
+  <div class="my-5">
+    <div class="flex justify-end">
+      <% if comment.user == current_user %>
+        <%= link_to (heroicon "pencil-alt", class: "h-5 w-5"), edit_post_comment_path(comment.post, comment), class: "py-1 px-2 hover:px-5 rounded-lg font-medium text-white bg-gray-900 hover:bg-gray-800 shadow-2xl transition-all mt-2 hover:px-3 ml-2" %>
+        <%= button_to (heroicon "trash", class: "h-5 w-5"), post_comment_path(comment.post, comment), method: :delete, class: "py-1 px-2 hover:px-5 rounded-lg font-medium text-white bg-gray-900 hover:bg-gray-800 shadow-2xl transition-all mt-2 hover:px-3 ml-2" %>
+      <% end %>
+    </div>
+    <p class="py-2">
+      <%= comment.content %>    
+    </p>
+
+    <div class="my-5 py-2  text-gray-400 text-xs grid grid-cols-2 grid-rows-1">
+      <div class="flex justify-start">
+        <%= comment.user.nil? ? "Anonymous" : comment.user.email[0..3] + "..."%>
+      </div>
+      <div class="flex justify-end">
+        <%= time_tag comment.created_at, "data-local": "time-ago" %>
+      </div>
+    </div>
+  </div>
+
+</div>

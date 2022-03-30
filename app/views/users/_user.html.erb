@@ -1,0 +1,43 @@
+<div id="<%= dom_id post %>" class="p-4 mb-8 rounded-lg bg-white min-w-full">
+  <div class="flex justify-end">
+
+    <%= link_to (heroicon "zoom-in"), post, class: "group-button" %>
+
+    <% if signed_in? %>
+      <%= link_to (heroicon "pencil-alt"), edit_post_path(post), class: "group-button" if signed_in? %>
+      <%= button_to (heroicon "trash"), post_path(post), method: :delete, class: "group-button rounded-r-lg" if signed_in? %>
+    <% end %>
+
+  </div>
+
+  <div class="my-5">
+    <div id="header" class="relative flex items-center">
+      <h1 class="font-bold text-4xl">
+        <%= post.title %>
+      </h1>
+      <!-- TODO -->
+      <div class="absolute right-0">
+        <span class="px-2 mr-2 text-xs rounded-2xl shadow-2xl text-white font-bold bg-gray-900">
+          <%= post.user.nil? ? "nil" : post.user.username %>
+        </span>
+
+        <span class="px-2 text-xs rounded-2xl shadow-2xl text-white font-bold <%= post.status %>">
+          <%= post.status.capitalize %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <%= post.body %>
+  </div>
+
+  <div class="my-5 py-2  text-gray-400 text-xs grid grid-cols-2 grid-rows-1">
+    <div class="flex justify-start">
+      <%= pluralize post.comments.count, "comment" %>
+    </div>
+    <div class="flex justify-end">
+      <%= time_tag post.created_at, "data-local": "time-ago" %>
+    </div>
+  </div>
+</div>

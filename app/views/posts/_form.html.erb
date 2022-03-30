@@ -1,0 +1,39 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :body %>
+    <%= form.rich_text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full h-auto" %>
+  </div>
+  
+  <div class="my-5 p-5">
+    <%= form.label :status %>
+    <%= form.select :status,
+          Post.statuses.map {|k, v| [k.capitalize, k]}, {},
+          { class: "block mt-2 hover:bg-gray-200 rounded-md" } %>
+  </div>
+
+  <div class="flex justify-center">
+    <% if action_name == "new" || action_name == "create" %>
+      <%= form.button heroicon("plus"), class: "form-button" %>
+    <% elsif action_name == "update" || action_name == "edit" %>
+      <%= form.button (heroicon "pencil-alt"), class: "form-button" %>
+    <% end %>
+  </div>
+
+<% end %>

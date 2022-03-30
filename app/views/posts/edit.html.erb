@@ -1,0 +1,11 @@
+<div class="mx-auto w-full my-auto shadow-2xl p-8 bg-white rounded-lg">
+
+  <div class="flex justify-end">
+    <%= link_to (heroicon "zoom-in"), @post, class: "button ml-2" %>
+  </div>
+
+  <h1 class="font-bold text-4xl mt-4 flex justify-center">Editing post</h1>
+  
+  <%= render "form", post: @post %>
+
+</div>

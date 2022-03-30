@@ -1,0 +1,10 @@
+<%= form_with model: [ post, comment] do |form| %>
+  <div class="my-5">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full h-auto" %>
+  </div>
+
+  <div class="inline">
+    <%= form.button class: "form-button" %>
+  </div>
+<% end %>
